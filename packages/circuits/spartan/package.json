@@ -5,8 +5,7 @@
     "main": "index.js",
     "type": "module",
     "scripts": {
-        "build": "node wasmBytes.js",
-        "compile-circuit": "sh ./scripts/compile-web.sh"
+        "build": "sh ./scripts/compile-web.sh && node wasmBytes.js"
     },
     "keywords": [],
     "author": "",

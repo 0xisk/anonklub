@@ -1,6 +1,7 @@
 packages:
   - "packages/*"
   - "packages/circuits/*"
+  - "packages/circuits/spartan/*"
   - "packages/merkle-tree/*"
   - "packages/workers/*"
   - "packages/apis/*"

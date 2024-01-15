@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { Remote } from "comlink";
 import { MerkleTreeWorker, GenerateMerkleProofFn } from "@anonklub/merkle-tree-worker";
 
 export const useMerkleTreeWasmWorker = () => {

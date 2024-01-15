@@ -1,5 +1,5 @@
 {
-  "name": "@anonklub/spartan",
+  "name": "@anonklub/spartan-ecdsa-wasm",
   "version": "0.1.0",
   "files": [
     "index_bg.wasm",

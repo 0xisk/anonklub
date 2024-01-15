@@ -1,7 +1,7 @@
 import { ProofRequest } from '@anonklub/proof'
 import { useEffect, useState } from 'react'
 import { useAccount, useSignMessage } from 'wagmi'
-import { config } from '#'
+import { config, testMerkleProof } from '#'
 import { useStore } from './useStore'
 import { useMerkleTreeWasmWorker } from './useMerkleTreeWorker'
 
@@ -40,15 +40,15 @@ export const useProofRequest = () => {
 
       console.log("merkleProofBytes", merkleProofBytes);
 
-      // setProofRequest(
-      //   new ProofRequest({
-      //     addresses: anonSet,
-      //     message,
-      //     merkleProof: merkleProofBytes,
-      //     rawSignature,
-      //     url: config.urls.proveApi,
-      //   }),
-      // )
+      setProofRequest(
+        new ProofRequest({
+          addresses: anonSet,
+          message,
+          merkleProof: testMerkleProof,
+          rawSignature,
+          url: config.urls.proveApi,
+        }),
+      )
     })()
   }, [canSign, canSubmit, message, rawSignature, anonSet])
 

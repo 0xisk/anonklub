@@ -331,6 +331,8 @@ importers:
         specifier: 5.2.2
         version: 5.2.2
 
+  packages/circuits/spartan/wasm-pkg: {}
+
   packages/cli:
     dependencies:
       '@anonklub/proof':
@@ -438,7 +440,7 @@ importers:
 
   packages/merkle-tree: {}
 
-  packages/merkle-tree/merkle-tree-wasm: {}
+  packages/merkle-tree/wasm-pkg: {}
 
   packages/proof:
     dependencies:
@@ -474,6 +476,9 @@ importers:
       '@anonklub/proof':
         specifier: workspace:^
         version: link:../proof
+      '@anonklub/spartan-ecdsa-worker':
+        specifier: workspace:^
+        version: link:../workers/spartan-ecdsa-worker
       '@heroicons/react':
         specifier: ^2.0.18
         version: 2.0.18(react@18.2.0)
@@ -489,9 +494,6 @@ importers:
       autoprefixer:
         specifier: ^10.4.14
         version: 10.4.14(postcss@8.4.23)
-      comlink:
-        specifier: ^4.4.1
-        version: 4.4.1
       easy-peasy:
         specifier: ^6.0.0
         version: 6.0.0(@types/react@18.2.6)(react-dom@18.2.0)(react@18.2.0)
@@ -555,16 +557,32 @@ importers:
     dependencies:
       '@anonklub/merkle-tree-wasm':
         specifier: workspace:^
-        version: link:../../merkle-tree/merkle-tree-wasm
+        version: link:../../merkle-tree/wasm-pkg
       comlink:
         specifier: ^4.4.1
         version: 4.4.1
+
+  packages/workers/spartan-ecdsa-worker:
+    dependencies:
+      '@anonklub/spartan-ecdsa-wasm':
+        specifier: workspace:^
+        version: link:../../circuits/spartan/wasm-pkg
+      comlink:
+        specifier: ^4.4.1
+        version: 4.4.1
+      viem:
+        specifier: ^2.0.10
+        version: 2.0.10(typescript@4.9.4)(zod@3.21.4)
 
 packages:
 
   /@aashutoshrathi/word-wrap@1.2.6:
     resolution: {integrity: sha512-1Yjs2SvM8TflER/OD3cOjhWWOZb58A2t7wpE2S9XfBYTiIl+XFhQG2bjy4Pu1I+EAlCNUzRDYDdFwFYUKvXcIA==}
     engines: {node: '>=0.10.0'}
+
+  /@adraffy/ens-normalize@1.10.0:
+    resolution: {integrity: sha512-nA9XHtlAkYfJxY7bce8DcN7eKxWWCWkU+1GR9d+U6MbNpfwQp8TI7vqOsBsMcHoT4mBu2kypKoSKnghEzOOq5Q==}
+    dev: false
 
   /@adraffy/ens-normalize@1.9.0:
     resolution: {integrity: sha512-iowxq3U30sghZotgl4s/oJRci6WPBfNO5YYgk2cIOMCHr3LeGPcsZjCEr+33Q4N+oV3OABDAtA+pyvWjbvBifQ==}
@@ -7761,6 +7779,21 @@ packages:
     dependencies:
       jsonparse: 1.3.1
       through: 2.3.8
+    dev: false
+
+  /abitype@0.10.0(typescript@4.9.4)(zod@3.21.4):
+    resolution: {integrity: sha512-QvMHEUzgI9nPj9TWtUGnS2scas80/qaL5PBxGdwWhhvzqXfOph+IEiiiWrzuisu3U3JgDQVruW9oLbJoQ3oZ3A==}
+    peerDependencies:
+      typescript: '>=5.0.4'
+      zod: ^3 >=3.22.0
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+      zod:
+        optional: true
+    dependencies:
+      typescript: 4.9.4
+      zod: 3.21.4
     dev: false
 
   /abitype@0.8.1(typescript@5.2.2)(zod@3.21.4):
@@ -18379,6 +18412,29 @@ packages:
       abitype: 0.9.8(typescript@5.1.6)(zod@3.21.4)
       isows: 1.0.3(ws@8.13.0)
       typescript: 5.1.6
+      ws: 8.13.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+      - zod
+    dev: false
+
+  /viem@2.0.10(typescript@4.9.4)(zod@3.21.4):
+    resolution: {integrity: sha512-ncdvXJ0v8Qc83qQaPzPG7pTr7gbg9hRUCNL7n/1b5ZFE17YIeQVtGTx6zqg4zdjTXlTKPrecKvqeKUUjKrmnYg==}
+    peerDependencies:
+      typescript: '>=5.0.4'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      '@adraffy/ens-normalize': 1.10.0
+      '@noble/curves': 1.2.0
+      '@noble/hashes': 1.3.2
+      '@scure/bip32': 1.3.2
+      '@scure/bip39': 1.2.1
+      abitype: 0.10.0(typescript@4.9.4)(zod@3.21.4)
+      isows: 1.0.3(ws@8.13.0)
+      typescript: 4.9.4
       ws: 8.13.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - bufferutil

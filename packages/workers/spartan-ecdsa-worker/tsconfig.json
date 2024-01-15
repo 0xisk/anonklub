@@ -7,8 +7,8 @@
     "strictPropertyInitialization": false,
     "lib": ["webWorker", "DOM"],
     "paths": {
-      "@anonklub/merkle-tree-wasm": ["../../merkle-tree/wasm-pkg"]
+      "@anonklub/spartan-ecdsa-wasm": ["../../circuits/spartan/wasm-pkg"],
     }
   },
-  "include": ["src"]
+  "include": ["src", "test"]
 }

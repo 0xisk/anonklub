@@ -2,7 +2,7 @@ import type { MerkleProof } from "@personaelabs/spartan-ecdsa"
 
 export interface ProofRequestArgs {
   addresses: string[]
-  merkleProof: MerkleProof;
+  merkleProof: MerkleProof | Uint8Array;
   message: string
   rawSignature: string
   /**

@@ -7,7 +7,6 @@
     "index_bg.js",
     "index.d.ts"
   ],
-  "main": "index.js",
   "module": "index.js",
   "types": "index.d.ts",
   "sideEffects": [

@@ -1,4 +1,5 @@
 [workspace]
 members = [
-    "packages/merkle-tree"
+    "packages/merkle-tree",
+    "packages/circuits/spartan"
 ]

@@ -1,7 +1,7 @@
-import { wrap } from "comlink";
+import { wrap, Remote } from "comlink";
 import { IMerkleTreeWorker } from "./interface";
 
-let MerkleTreeWorker;
+let MerkleTreeWorker: Remote<IMerkleTreeWorker>;
 
 if (typeof window !== 'undefined') {
     // Initialize only if in a browser environment

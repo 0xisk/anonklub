@@ -3,8 +3,6 @@ import { Remote } from "comlink";
 import { MerkleTreeWorker, GenerateMerkleProofFn } from "@anonklub/merkle-tree-worker";
 
 export const useMerkleTreeWasmWorker = () => {
-    let worker: Remote<typeof MerkleTreeWorker>;
-
     useEffect(() => {
         (async () => {
             await MerkleTreeWorker.prepare();

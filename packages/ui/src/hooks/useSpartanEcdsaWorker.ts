@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { SpartanEcdsaWorker, ProveMembershipFn, VerifyMembershipFn } from "@anonklub/spartan-ecdsa-worker";
 
-export const useMerkleTreeWasmWorker = () => {
+export const useSpartanEcdsaWorker = () => {
     useEffect(() => {
         (async () => {
             await SpartanEcdsaWorker.prepare();
@@ -9,23 +9,15 @@ export const useMerkleTreeWasmWorker = () => {
     }, []);
 
     const proveMembership: ProveMembershipFn = async ({
-        s,
-        r,
-        isYOdd,
-        msgHash,
-        siblings,
-        indices,
-        roots
+        sig,
+        message,
+        merkleProofs
     }): Promise<Uint8Array> => {
         console.time('==> Prove');
         const proof = await SpartanEcdsaWorker.proveMembership({
-            s,
-            r,
-            isYOdd,
-            msgHash,
-            siblings,
-            indices,
-            roots
+            sig,
+            message,
+            merkleProofs
         });
         console.timeEnd('==> Prove');
 

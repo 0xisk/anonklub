@@ -35,7 +35,7 @@
   "exclude": ["node_modules"],
   "references": [
     {
-      "path": "../proof"
+      "path": "../proof",
     }
   ]
 }

@@ -6,9 +6,10 @@
     "noUncheckedIndexedAccess": false,
     "strictPropertyInitialization": false,
     "lib": ["webWorker", "DOM"],
+    "noEmit": false,
     "paths": {
       "@anonklub/spartan-ecdsa-wasm": ["../../circuits/spartan/wasm-pkg"],
     }
   },
-  "include": ["src", "test"]
+  "include": ["src"]
 }

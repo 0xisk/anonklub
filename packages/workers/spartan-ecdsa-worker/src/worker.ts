@@ -4,10 +4,17 @@ import { hexToSignature, hexToBytes, hashMessage } from "viem";
 import { calculateSigRecovery } from "./utils";
 
 let spartanEcdsaWasm: ISpartanEcdsaWasm;
+let initialized = false;
 
 export const spartanEcdsaWorker: ISpartanEcdsaWorker = {
     async prepare() {
         spartanEcdsaWasm = await import("@anonklub/spartan-ecdsa-wasm");
+        spartanEcdsaWasm.init_panic_hook();
+
+        if (!initialized) {
+            spartanEcdsaWasm.prepare();
+            initialized = true;
+        }
     },
 
     async proveMembership({

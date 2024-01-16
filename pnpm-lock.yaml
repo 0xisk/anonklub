@@ -440,6 +440,8 @@ importers:
 
   packages/merkle-tree: {}
 
+  packages/merkle-tree/merkle-tree-wasm: {}
+
   packages/merkle-tree/wasm-pkg: {}
 
   packages/proof:

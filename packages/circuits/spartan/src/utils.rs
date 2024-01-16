@@ -5,7 +5,7 @@ use ark_secp256k1::Affine;
 use ark_secp256k1::Fq;
 use ark_secp256k1::Fr;
 use num_bigint::BigUint;
-use sapir::{wasm::prelude::*};
+use sapir::wasm::prelude::*;
 
 // Recover the point from the x coordinate and the parity bit
 // following the SEC 1 spec https://www.secg.org/sec1-v2.pdf

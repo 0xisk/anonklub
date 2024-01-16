@@ -1,5 +1,3 @@
-import type { MerkleProof } from "@personaelabs/spartan-ecdsa";
-
 import {
   JobResponse,
   ProofRequestArgs,
@@ -13,7 +11,7 @@ export { ProofRequestJson }
 export class ProofRequest implements ProofRequestInterface {
   public readonly addresses: string[]
   public readonly message: string
-  public readonly merkleProof: MerkleProof
+  public readonly merkleProof: Uint8Array
   public readonly rawSignature: string
   public jobId: string | undefined
   public readonly url: string

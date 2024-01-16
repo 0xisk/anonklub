@@ -2,6 +2,6 @@ packages:
   - "packages/*"
   - "packages/circuits/*"
   - "packages/circuits/spartan/*"
-  - "packages/merkle-tree/*"
+  - "packages/merkle_tree_wasm/*"
   - "packages/workers/*"
   - "packages/apis/*"

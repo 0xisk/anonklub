@@ -6,6 +6,7 @@ use ark_ff::BigInteger;
 use ark_secp256k1::{Affine, Fq, Fr};
 use ark_serialize::{CanonicalDeserialize, CanonicalSerialize};
 use eth_membership::{eth_membership, to_cs_field, NUM_MERKLE_PROOFS, TREE_DEPTH};
+use merkle_tree_wasm::MerkleProofBytes;
 use num_bigint::BigUint;
 use sapir::constraint_system::ConstraintSystem;
 use sapir::{circuit, wasm::prelude::*};
@@ -40,14 +41,15 @@ pub fn prove_membership(
     r: &[u8],
     is_y_odd: bool,
     msg_hash: &[u8],
-    merkle_siblings: &[u8],
-    merkle_indices: &[u8],
-    merkle_roots: &[u8],
+    merkle_proof_bytes_serialized: &[u8]
 ) -> Vec<u8> {
     console::log_1(&"Starting prove_membership".into());
-    assert!(merkle_siblings.len() == NUM_MERKLE_PROOFS * TREE_DEPTH * 32);
-    assert!(merkle_indices.len() == NUM_MERKLE_PROOFS * TREE_DEPTH * 32);
-    assert!(merkle_roots.len() == NUM_MERKLE_PROOFS * 32);
+
+    let merkle_proof = MerkleProofBytes::deserialize_compressed(&*merkle_proof_bytes_serialized).unwrap();
+
+    assert!(merkle_proof.siblings.len() == NUM_MERKLE_PROOFS * TREE_DEPTH * 32);
+    assert!(merkle_proof.path_indices.len() == NUM_MERKLE_PROOFS * TREE_DEPTH * 32);
+    assert!(merkle_proof.root.len() == NUM_MERKLE_PROOFS * 32);
 
     console::log_1(&"Starting Deserialize the inputs".into());
     // Deserialize the inputs
@@ -55,19 +57,27 @@ pub fn prove_membership(
     let r = Fq::from(BigUint::from_bytes_be(r));
     let msg_hash = BigUint::from_bytes_be(msg_hash);
 
-    let merkle_siblings = merkle_siblings
+    let merkle_siblings = merkle_proof.siblings
         .to_vec()
         .chunks(32)
-        .map(|sibling| F::from(BigUint::from_bytes_be(&sibling)))
+        .map(|sibling| {
+            let array: [u8; 32] = sibling.try_into()
+            .expect("Chunk is not 32 bytes");
+            F::from(BigUint::from_bytes_be(&array))
+        })
         .collect::<Vec<F>>();
 
-    let merkle_indices = merkle_indices
+    let merkle_indices = merkle_proof.path_indices
         .to_vec()
         .chunks(32)
-        .map(|index| F::from(BigUint::from_bytes_be(&index)))
+        .map(|path_index| {
+            let array: [u8; 32] = path_index.try_into()
+            .expect("Chunk is not 32 bytes");
+            F::from(BigUint::from_bytes_be(&array))
+        })
         .collect::<Vec<F>>();
 
-    let merkle_roots = merkle_roots
+    let merkle_roots = merkle_proof.root
         .to_vec()
         .chunks(32)
         .map(|root| F::from(BigUint::from_bytes_be(root)))

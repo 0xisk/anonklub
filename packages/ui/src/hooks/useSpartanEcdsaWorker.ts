@@ -11,13 +11,13 @@ export const useSpartanEcdsaWorker = () => {
     const proveMembership: ProveMembershipFn = async ({
         sig,
         message,
-        merkleProofs
+        merkleProofBytesSerialized
     }): Promise<Uint8Array> => {
         console.time('==> Prove');
         const proof = await SpartanEcdsaWorker.proveMembership({
             sig,
             message,
-            merkleProofs
+            merkleProofBytesSerialized
         });
         console.timeEnd('==> Prove');
 

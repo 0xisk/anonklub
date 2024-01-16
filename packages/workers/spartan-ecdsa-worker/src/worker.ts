@@ -20,7 +20,7 @@ export const spartanEcdsaWorker: ISpartanEcdsaWorker = {
     async proveMembership({
         sig,
         message,
-        merkleProofs
+        merkleProofBytesSerialized
     }): Promise<Uint8Array> {
         const { r, s, v } = hexToSignature(sig);
 
@@ -38,9 +38,7 @@ export const spartanEcdsaWorker: ISpartanEcdsaWorker = {
             rBytes,
             isYOdd,
             msgHash,
-            merkleProofs[0].siblings as any,
-            merkleProofs[0].pathIndices as any,
-            merkleProofs[0].root as any
+            merkleProofBytesSerialized,
         );
 
         return proof;

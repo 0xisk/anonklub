@@ -10,7 +10,7 @@ export interface MerkleProof {
 export interface ProveInputs {
     sig: Hex,
     message: string;
-    merkleProofs: MerkleProof[];
+    merkleProofBytesSerialized: Uint8Array;
 }
 
 export type ProveMembershipFn = (proveInputs: ProveInputs) => Promise<Uint8Array>;

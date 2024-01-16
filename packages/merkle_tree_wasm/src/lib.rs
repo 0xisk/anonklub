@@ -1,5 +1,5 @@
 #![allow(non_snake_case)]
-mod merkle_tree;
+mod merkle_tree_wasm;
 
 extern crate console_error_panic_hook;
 
@@ -9,7 +9,7 @@ use num_bigint::BigUint;
 use poseidon::constants::secp256k1_w3;
 use wasm_bindgen::prelude::wasm_bindgen;
 
-use crate::merkle_tree::{MerkleProofBytes, MerkleTree};
+pub use crate::merkle_tree_wasm::{MerkleProofBytes, MerkleTree};
 
 fn internal_generate_merkle_proof<F: PrimeField>(
     leaves: Vec<String>,

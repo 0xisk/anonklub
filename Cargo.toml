@@ -1,5 +1,8 @@
 [workspace]
+
+resolver = "2"
+
 members = [
-    "packages/merkle-tree",
-    "packages/circuits/spartan"
+    "packages/circuits/spartan",
+    "packages/merkle_tree_wasm"
 ]

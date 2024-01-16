@@ -17,7 +17,7 @@ export const useProofResult = () => {
         const fullProof = await proveMembership({
           sig: proofRequest.rawSignature as Hex, 
           message: proofRequest.message, 
-          merkleProofs: [proofRequest.merkleProof]
+          merkleProofBytesSerialized: proofRequest.merkleProof
         });
 
         return fullProof;

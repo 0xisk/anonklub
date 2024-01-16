@@ -22,12 +22,10 @@ export function verify(proof_ser: Uint8Array): boolean;
 * @param {Uint8Array} r
 * @param {boolean} is_y_odd
 * @param {Uint8Array} msg_hash
-* @param {Uint8Array} merkle_siblings
-* @param {Uint8Array} merkle_indices
-* @param {Uint8Array} merkle_roots
+* @param {Uint8Array} merkle_proof_bytes_serialized
 * @returns {Uint8Array}
 */
-export function prove_membership(s: Uint8Array, r: Uint8Array, is_y_odd: boolean, msg_hash: Uint8Array, merkle_siblings: Uint8Array, merkle_indices: Uint8Array, merkle_roots: Uint8Array): Uint8Array;
+export function prove_membership(s: Uint8Array, r: Uint8Array, is_y_odd: boolean, msg_hash: Uint8Array, merkle_proof_bytes_serialized: Uint8Array): Uint8Array;
 /**
 * @param {Uint8Array} anonklub_proof
 * @returns {boolean}
@@ -43,3 +41,10 @@ export function get_roots(anonklub_proof: Uint8Array): Uint8Array;
 * @returns {Uint8Array}
 */
 export function get_msg_hash(anonklub_proof: Uint8Array): Uint8Array;
+/**
+* @param {(string)[]} leaves
+* @param {string} leaf
+* @param {number} depth
+* @returns {Uint8Array}
+*/
+export function generate_merkle_proof(leaves: (string)[], leaf: string, depth: number): Uint8Array;

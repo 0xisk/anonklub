@@ -38,13 +38,11 @@ export const useProofRequest = () => {
         15
       );
 
-      console.log("merkleProofBytes", merkleProofBytes);
-
       setProofRequest(
         new ProofRequest({
           addresses: anonSet,
           message,
-          merkleProof: testMerkleProof,
+          merkleProof: merkleProofBytes,
           rawSignature,
           url: config.urls.proveApi,
         }),
